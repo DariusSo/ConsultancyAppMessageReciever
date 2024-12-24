@@ -40,6 +40,8 @@ public class RabbitMQService implements Runnable{
                 try {
                     EmailMessage emailMessage = objectMapper.readValue(jsonMessage, EmailMessage.class);
 
+                    EmailService.sendEmail(emailMessage);
+
                     channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
 
                 }catch (Exception e){
